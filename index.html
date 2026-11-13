@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no" />
+  <meta name="theme-color" content="#0a1325" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <title>OUTBREAK: ATLAS — мобильная стратегия</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div><div class="eyebrow">GLOBAL SIMULATION // 01</div><h1>OUTBREAK <span>ATLAS</span></h1></div>
+      <div class="top-actions"><button id="saveBtn" class="icon-btn" aria-label="Сохранить">💾</button><button id="resetBtn" class="icon-btn" aria-label="Новая игра">↻</button></div>
+    </header>
+    <section class="stats" aria-label="Статистика">
+      <div class="stat"><span>Заражено</span><strong id="infectedStat">0</strong></div>
+      <div class="stat"><span>Погибло</span><strong id="deadStat">0</strong></div>
+      <div class="stat"><span>Очки ДНК</span><strong id="dnaStat" class="accent">0</strong></div>
+      <div class="stat"><span>Лекарство</span><strong id="cureStat">0%</strong></div>
+    </section>
+    <main>
+      <section class="map-panel">
+        <div class="map-head"><div><span class="live-dot"></span> <span id="phase">НАБЛЮДЕНИЕ</span></div><div>ДЕНЬ <b id="dayStat">0</b></div></div>
+        <div class="map-wrap"><canvas id="worldMap" aria-label="Интерактивная карта стран"></canvas><div class="map-hint">Коснитесь точки на карте для просмотра страны</div></div>
+        <div class="map-foot"><span><i class="legend-dot safe"></i> Без инфекции</span><span><i class="legend-dot sick"></i> Эпидемия</span><span><i class="legend-dot critical"></i> Кризис</span></div>
+      </section>
+      <section class="action-panel">
+        <div class="time-row"><div><span class="sub">ТЕЧЕНИЕ СИМУЛЯЦИИ</span><div class="date" id="dateText">День 0 · Мир спокоен</div></div><div class="speed-buttons"><button data-speed="0" class="speed" aria-label="Пауза">Ⅱ</button><button data-speed="1" class="speed active">1×</button><button data-speed="3" class="speed">3×</button><button data-speed="8" class="speed">8×</button></div></div>
+        <div class="news"><div class="section-label">СВОДКА СОБЫТИЙ</div><div id="newsText">Выберите страну, чтобы начать распространение вымышленного патогена.</div></div>
+      </section>
+      <section class="tab-panel">
+        <nav class="tabs" aria-label="Разделы"><button class="tab active" data-tab="countries">🌐 Страны</button><button class="tab" data-tab="evolution">🧬 Эволюция</button><button class="tab" data-tab="world">🛡️ Мир</button></nav>
+        <div id="tabContent" class="tab-content"></div>
+      </section>
+    </main>
+    <footer>OUTBREAK: ATLAS · оригинальный игровой прототип · все механики условные</footer>
+  </div>
+  <div id="modal" class="modal" hidden><div class="modal-backdrop" data-close></div><div class="modal-sheet" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-grip"></div><h2 id="modalTitle"></h2><div id="modalBody"></div><div id="modalActions"></div></div></div>
+  <script src="game.js"></script>
+</body>
+</html>
