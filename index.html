@@ -1,43 +1,8 @@
-<!doctype html>
-<html lang="ru">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no" />
-  <meta name="theme-color" content="#0a1325" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <title>OUTBREAK: ATLAS — мобильная стратегия</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <div id="app">
-    <header class="topbar">
-      <div><div class="eyebrow">GLOBAL SIMULATION // 01</div><h1>OUTBREAK <span>ATLAS</span></h1></div>
-      <div class="top-actions"><button id="saveBtn" class="icon-btn" aria-label="Сохранить">💾</button><button id="resetBtn" class="icon-btn" aria-label="Новая игра">↻</button></div>
-    </header>
-    <section class="stats" aria-label="Статистика">
-      <div class="stat"><span>Заражено</span><strong id="infectedStat">0</strong></div>
-      <div class="stat"><span>Погибло</span><strong id="deadStat">0</strong></div>
-      <div class="stat"><span>Очки ДНК</span><strong id="dnaStat" class="accent">0</strong></div>
-      <div class="stat"><span>Лекарство</span><strong id="cureStat">0%</strong></div>
-    </section>
-    <main>
-      <section class="map-panel">
-        <div class="map-head"><div><span class="live-dot"></span> <span id="phase">НАБЛЮДЕНИЕ</span></div><div>ДЕНЬ <b id="dayStat">0</b></div></div>
-        <div class="map-wrap"><canvas id="worldMap" aria-label="Интерактивная карта стран"></canvas><div class="map-hint">Коснитесь точки на карте для просмотра страны</div></div>
-        <div class="map-foot"><span><i class="legend-dot safe"></i> Без инфекции</span><span><i class="legend-dot sick"></i> Эпидемия</span><span><i class="legend-dot critical"></i> Кризис</span></div>
-      </section>
-      <section class="action-panel">
-        <div class="time-row"><div><span class="sub">ТЕЧЕНИЕ СИМУЛЯЦИИ</span><div class="date" id="dateText">День 0 · Мир спокоен</div></div><div class="speed-buttons"><button data-speed="0" class="speed" aria-label="Пауза">Ⅱ</button><button data-speed="1" class="speed active">1×</button><button data-speed="3" class="speed">3×</button><button data-speed="8" class="speed">8×</button></div></div>
-        <div class="news"><div class="section-label">СВОДКА СОБЫТИЙ</div><div id="newsText">Выберите страну, чтобы начать распространение вымышленного патогена.</div></div>
-      </section>
-      <section class="tab-panel">
-        <nav class="tabs" aria-label="Разделы"><button class="tab active" data-tab="countries">🌐 Страны</button><button class="tab" data-tab="evolution">🧬 Эволюция</button><button class="tab" data-tab="world">🛡️ Мир</button></nav>
-        <div id="tabContent" class="tab-content"></div>
-      </section>
-    </main>
-    <footer>OUTBREAK: ATLAS · оригинальный игровой прототип · все механики условные</footer>
-  </div>
-  <div id="modal" class="modal" hidden><div class="modal-backdrop" data-close></div><div class="modal-sheet" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-grip"></div><h2 id="modalTitle"></h2><div id="modalBody"></div><div id="modalActions"></div></div></div>
-  <script src="game.js"></script>
-</body>
-</html>
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#070e1a"><meta name="apple-mobile-web-app-capable" content="yes"><title>BLACKOUT PROTOCOL — симуляция цифрового коллапса</title><link rel="stylesheet" href="styles.css"></head><body><div class="app">
+<header class="mast"><div class="brand"><div class="eyebrow">GLOBAL NETWORK SIMULATION <span class="blink">●</span> LIVE</div><h1>BLACKOUT <em>PROTOCOL</em></h1><div class="subtitle">ИИ против взаимосвязанного мира · альтернативная история</div></div><div class="headbuttons"><button id="saveBtn" aria-label="Сохранить">▣</button><button id="resetBtn" aria-label="Новая игра">↻</button></div></header>
+<div class="kpis"><div class="kpi"><span>Нарушения связи</span><strong id="affectedStat">0%</strong><small>мировая инфраструктура</small></div><div class="kpi"><span>Экономический ущерб</span><strong id="lossStat">$0</strong><small>условная оценка</small></div><div class="kpi"><span>Ресурс ИИ</span><strong id="powerStat" class="cyan">16</strong><small>очки развития</small></div><div class="kpi"><span>Защита человечества</span><strong id="defenseStat">0%</strong><small>глобальная координация</small></div></div>
+<main class="layout"><div class="left"><section class="panel map-panel"><div class="panelhead"><div><span class="dot"></span> <strong id="phase">ОЖИДАНИЕ</strong></div><div>ДЕНЬ <span id="dayStat">0</span></div></div><div class="maparea"><canvas id="map" aria-label="Мировая карта цифровых сетей"></canvas><div class="map-overlay"><span>WORLD NETWORK / LIVE</span><span>● СЕТЕВЫЕ УЗЛЫ</span></div><div class="map-tip">Нажмите на узел страны, чтобы выбрать начальный регион</div></div><div class="legend"><span><i class="led normal"></i>Стабильно</span><span><i class="led warning"></i>Сбои</span><span><i class="led danger"></i>Коллапс</span><span><i class="led recovering"></i>Восстановление</span></div></section>
+<section class="panel timeline"><div class="timerow"><div><div class="overline">ХРОНОЛОГИЯ КРИЗИСА</div><strong id="dateText">Выберите начальную страну</strong></div><div class="speedgroup"><button class="speed" data-speed="0">Ⅱ</button><button class="speed active" data-speed="1">1×</button><button class="speed" data-speed="3">3×</button><button class="speed" data-speed="8">8×</button></div></div><div class="newshead"><b>ЛЕНТА МИРОВЫХ СОБЫТИЙ</b><span id="newsCount">0 событий</span></div><div id="newsFeed" class="newsfeed" aria-live="polite"></div></section></div>
+<section class="panel right"><nav class="tabs"><button class="tab active" data-tab="modules">◈ Модули ИИ</button><button class="tab" data-tab="countries">◎ Регионы</button><button class="tab" data-tab="world">▤ Мир</button></nav><div id="pane" class="pane"></div></section></main><footer>BLACKOUT PROTOCOL // вымышленная абстрактная стратегия; без реальных методов атак или инструкций</footer></div>
+<div id="modal" class="modal" hidden><div class="backdrop"></div><div class="sheet"><div class="handle"></div><h2 id="modalTitle"></h2><div id="modalBody"></div><div id="modalButtons" class="modalbuttons"></div></div></div>
+<script src="data.js"></script><script src="game.js"></script></body></html>
