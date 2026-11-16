@@ -1,8 +1,35 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#070e1a"><meta name="apple-mobile-web-app-capable" content="yes"><title>BLACKOUT PROTOCOL — симуляция цифрового коллапса</title><link rel="stylesheet" href="styles.css"></head><body><div class="app">
-<header class="mast"><div class="brand"><div class="eyebrow">GLOBAL NETWORK SIMULATION <span class="blink">●</span> LIVE</div><h1>BLACKOUT <em>PROTOCOL</em></h1><div class="subtitle">ИИ против взаимосвязанного мира · альтернативная история</div></div><div class="headbuttons"><button id="saveBtn" aria-label="Сохранить">▣</button><button id="resetBtn" aria-label="Новая игра">↻</button></div></header>
-<div class="kpis"><div class="kpi"><span>Нарушения связи</span><strong id="affectedStat">0%</strong><small>мировая инфраструктура</small></div><div class="kpi"><span>Экономический ущерб</span><strong id="lossStat">$0</strong><small>условная оценка</small></div><div class="kpi"><span>Ресурс ИИ</span><strong id="powerStat" class="cyan">16</strong><small>очки развития</small></div><div class="kpi"><span>Защита человечества</span><strong id="defenseStat">0%</strong><small>глобальная координация</small></div></div>
-<main class="layout"><div class="left"><section class="panel map-panel"><div class="panelhead"><div><span class="dot"></span> <strong id="phase">ОЖИДАНИЕ</strong></div><div>ДЕНЬ <span id="dayStat">0</span></div></div><div class="maparea"><canvas id="map" aria-label="Мировая карта цифровых сетей"></canvas><div class="map-overlay"><span>WORLD NETWORK / LIVE</span><span>● СЕТЕВЫЕ УЗЛЫ</span></div><div class="map-tip">Нажмите на узел страны, чтобы выбрать начальный регион</div></div><div class="legend"><span><i class="led normal"></i>Стабильно</span><span><i class="led warning"></i>Сбои</span><span><i class="led danger"></i>Коллапс</span><span><i class="led recovering"></i>Восстановление</span></div></section>
-<section class="panel timeline"><div class="timerow"><div><div class="overline">ХРОНОЛОГИЯ КРИЗИСА</div><strong id="dateText">Выберите начальную страну</strong></div><div class="speedgroup"><button class="speed" data-speed="0">Ⅱ</button><button class="speed active" data-speed="1">1×</button><button class="speed" data-speed="3">3×</button><button class="speed" data-speed="8">8×</button></div></div><div class="newshead"><b>ЛЕНТА МИРОВЫХ СОБЫТИЙ</b><span id="newsCount">0 событий</span></div><div id="newsFeed" class="newsfeed" aria-live="polite"></div></section></div>
-<section class="panel right"><nav class="tabs"><button class="tab active" data-tab="modules">◈ Модули ИИ</button><button class="tab" data-tab="countries">◎ Регионы</button><button class="tab" data-tab="world">▤ Мир</button></nav><div id="pane" class="pane"></div></section></main><footer>BLACKOUT PROTOCOL // вымышленная абстрактная стратегия; без реальных методов атак или инструкций</footer></div>
-<div id="modal" class="modal" hidden><div class="backdrop"></div><div class="sheet"><div class="handle"></div><h2 id="modalTitle"></h2><div id="modalBody"></div><div id="modalButtons" class="modalbuttons"></div></div></div>
-<script src="data.js"></script><script src="game.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,viewport-fit=cover">
+  <meta name="theme-color" content="#07101e">
+  <meta name="description" content="BLACKOUT PROTOCOL // SYSTEM: мобильная стратегия об автономном ИИ и цифровом мире.">
+  <title>BLACKOUT PROTOCOL · SYSTEM v2.5</title>
+  <link rel="stylesheet" href="./styles.css?v=25">
+</head>
+<body>
+<div id="app" class="app">
+  <header class="top">
+    <div class="brandline"><span class="brandicon">◈</span><div><span class="eyebrow">BLACKOUT PROTOCOL <span class="live">● LIVE</span></span><div class="brand">SYST<span>E</span>M <b>// 2.5</b></div></div><button id="more" class="icon-btn" aria-label="Все показатели">⋯</button></div>
+    <div class="huds">
+      <div class="metric c"><span>◆ ВЫЧИСЛЕНИЯ</span><strong><em id="compute">12</em><small> / <span id="cap">40</span></small></strong><div class="meter"><i id="computeBar"></i></div><label id="regen">+1.0 / тик</label></div>
+      <div class="metric h"><span>◉ ОБЩИЙ СЛЕД</span><strong><em id="heat">0</em><small> / 100</small></strong><div class="meter"><i id="heatBar"></i></div><label id="heatHint">12 регионов · глобальный индекс</label></div>
+    </div>
+    <div class="control"><span class="day" id="day">ТИК 0000</span><span id="phase" class="phase">ИНИЦИАЛИЗАЦИЯ</span><div class="speed" id="speedControls"><button data-speed="pause" aria-label="Пауза">Ⅱ</button><button data-speed="1" class="active">1×</button><button data-speed="2">2×</button><button data-speed="4">4×</button></div></div>
+  </header>
+  <section id="headline" class="headline normal" aria-live="polite"><span id="headlineIcon">◉</span><span id="headlineText">Инициализация ядра…</span><button id="headlineOpen" aria-label="Открыть подробности">↗</button></section>
+  <main id="screen" class="screen" role="main"></main>
+  <nav class="tabs" id="tabs" aria-label="Разделы игры">
+    <button data-tab="actions" class="current" aria-current="page"><b>◈</b><span>Действия</span></button>
+    <button data-tab="slots"><b>▤</b><span>Слоты</span></button>
+    <button data-tab="log"><b>☷</b><span>Лог</span></button>
+    <button data-tab="forecast"><b>◷</b><span>Прогноз</span></button>
+    <button data-tab="journal"><b>▥</b><span>Журнал</span></button>
+  </nav>
+</div>
+<div id="sheetOverlay" class="sheetOverlay hidden" aria-hidden="true"><div class="scrim" data-close="1"></div><section class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle"><div class="grip"></div><div class="sheetHead"><h2 id="sheetTitle">Детали</h2><button class="icon-btn" data-close="1" aria-label="Закрыть">×</button></div><div id="sheetBody" class="sheetBody"></div></section></div>
+<div id="toasts" class="toasts" aria-live="polite"></div>
+<script type="module" src="./app.mjs?v=25"></script>
+</body>
+</html>

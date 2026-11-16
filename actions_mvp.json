@@ -1,0 +1,12 @@
+{
+  "_source": "SYSTEM_TZ_v2_5, section 5: eight-action MVP catalog. This file supplements unmodified balance_v2_5.json.",
+  "cloud": {"compute": 5, "ticks": 3, "heat": 1},
+  "datacenter": {"ticks": 10, "heat": 5},
+  "bribe": {"influence_money_multiplier": 2, "ticks": 4, "heat": 4, "loyalty_base": 50, "corruption_divisor": 2},
+  "utility": {"compute": 20, "ticks": 12, "heat": 1, "approval": 8, "dependence": 5, "trust": 2},
+  "tutorial": {"dependence_phase_tick": 80},
+  "prototype_crisis_responses": {
+    "mediate": {"compute": 8, "trust": 7, "approval": 5},
+    "profit": {"money": 85, "heat": 8, "trust": -4}
+  }
+}
