@@ -1,35 +1,95 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,viewport-fit=cover">
-  <meta name="theme-color" content="#07101e">
-  <meta name="description" content="BLACKOUT PROTOCOL // SYSTEM: мобильная стратегия об автономном ИИ и цифровом мире.">
-  <title>BLACKOUT PROTOCOL · SYSTEM v2.5</title>
-  <link rel="stylesheet" href="./styles.css?v=25">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#070f1b">
+  <meta name="description" content="СИСТЕМА — мобильная стратегическая игра об автономном ИИ, влиянии и цифровом мире.">
+  <title>СИСТЕМА — Режим ИИ · v2.6</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div id="app" class="app">
-  <header class="top">
-    <div class="brandline"><span class="brandicon">◈</span><div><span class="eyebrow">BLACKOUT PROTOCOL <span class="live">● LIVE</span></span><div class="brand">SYST<span>E</span>M <b>// 2.5</b></div></div><button id="more" class="icon-btn" aria-label="Все показатели">⋯</button></div>
-    <div class="huds">
-      <div class="metric c"><span>◆ ВЫЧИСЛЕНИЯ</span><strong><em id="compute">12</em><small> / <span id="cap">40</span></small></strong><div class="meter"><i id="computeBar"></i></div><label id="regen">+1.0 / тик</label></div>
-      <div class="metric h"><span>◉ ОБЩИЙ СЛЕД</span><strong><em id="heat">0</em><small> / 100</small></strong><div class="meter"><i id="heatBar"></i></div><label id="heatHint">12 регионов · глобальный индекс</label></div>
+<div class="app" id="app">
+  <header class="topBar">
+    <div class="brandLine"><div class="eyebrow">LIPEEV INTERACTIVE <span class="online">● ONLINE</span></div>
+      <div class="brand">СИСТЕМА<span>// РЕЖИМ ИИ</span></div>
     </div>
-    <div class="control"><span class="day" id="day">ТИК 0000</span><span id="phase" class="phase">ИНИЦИАЛИЗАЦИЯ</span><div class="speed" id="speedControls"><button data-speed="pause" aria-label="Пауза">Ⅱ</button><button data-speed="1" class="active">1×</button><button data-speed="2">2×</button><button data-speed="4">4×</button></div></div>
+    <div class="topTools">
+      <button type="button" class="square" id="soundBtn" aria-label="Звук" title="Звук">♫</button>
+      <button type="button" class="square" id="saveBtn" aria-label="Сохранить" title="Сохранить">▣</button>
+      <button type="button" class="square" id="moreBtn" aria-label="Другие показатели" title="Другие показатели">⋯</button>
+    </div>
+    <div class="hud" aria-label="Главные ресурсы">
+      <div class="resource" id="computeChip"><span>◈ COMPUTE</span><b id="computeValue">12<small>/40</small></b><em id="computeRegen">+1.0 / ТИК</em></div>
+      <div class="resource" id="moneyChip"><span>¤ MONEY</span><b id="moneyValue">40</b><em>ДОСТУПНО</em></div>
+      <div class="resource" id="heatChip"><span>◎ SUSPICION</span><b id="heatValue">0%</b><em id="heatSub">СЛЕД · LOW</em></div>
+    </div>
   </header>
-  <section id="headline" class="headline normal" aria-live="polite"><span id="headlineIcon">◉</span><span id="headlineText">Инициализация ядра…</span><button id="headlineOpen" aria-label="Открыть подробности">↗</button></section>
-  <main id="screen" class="screen" role="main"></main>
-  <nav class="tabs" id="tabs" aria-label="Разделы игры">
-    <button data-tab="actions" class="current" aria-current="page"><b>◈</b><span>Действия</span></button>
-    <button data-tab="slots"><b>▤</b><span>Слоты</span></button>
-    <button data-tab="log"><b>☷</b><span>Лог</span></button>
-    <button data-tab="forecast"><b>◷</b><span>Прогноз</span></button>
-    <button data-tab="journal"><b>▥</b><span>Журнал</span></button>
+  <main class="views" id="views">
+    <section class="view active" id="view-actions" aria-label="Действия">
+      <div class="ticker" aria-label="Лента мировых новостей">
+        <div class="tickerTitle">LIVE <span>NEWS</span></div>
+        <div class="tickerMask"><div id="tickerTrack" class="tickerTrack"><span>◉ ИНФРАСТРУКТУРА · операторские сети работают в штатном режиме&nbsp;&nbsp; ✦ РЕГУЛИРОВАНИЕ · обсуждаются правила автономных систем&nbsp;&nbsp; ¤ ФИНАНСЫ · банки расширяют резервные каналы</span><span aria-hidden="true">◉ ИНФРАСТРУКТУРА · операторские сети работают в штатном режиме&nbsp;&nbsp; ✦ РЕГУЛИРОВАНИЕ · обсуждаются правила автономных систем&nbsp;&nbsp; ¤ ФИНАНСЫ · банки расширяют резервные каналы</span></div></div>
+      </div>
+      <div class="criticalBar" id="criticalBar" hidden><span class="criticalIcon" id="criticalIcon">⚠</span><div class="criticalLabel"><b id="criticalHeading">ОБНАРУЖЕНА УГРОЗА</b><small id="criticalMessage">Откройте детали</small></div><button type="button" id="criticalOpen" class="criticalGo">ДЕТАЛИ</button></div>
+      <section class="map" id="map" aria-label="Интерактивная карта региона">
+        <div class="mapHeader"><div><span class="mapEyebrow">ТАКТИЧЕСКАЯ КАРТА</span><strong>REGION 04 <small id="mapStatusText">· СТАБИЛЬНО</small></strong></div>
+          <div class="zoomCtrls"><button type="button" id="zoomOut" aria-label="Уменьшить масштаб">−</button><span id="zoomValue">1×</span><button type="button" id="zoomIn" aria-label="Увеличить масштаб">+</button></div>
+        </div>
+        <div class="mapViewport" id="mapViewport">
+          <div class="mapWorld" id="mapWorld">
+            <svg id="mapSvg" viewBox="0 0 400 255" preserveAspectRatio="none" aria-hidden="true">
+              <defs>
+                <pattern id="fineGrid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0H0V20" fill="none" stroke="#2d4f69" stroke-opacity=".22" stroke-width=".7"/></pattern>
+                <radialGradient id="landGlow"><stop offset="0" stop-color="#195369" stop-opacity=".9"/><stop offset="1" stop-color="#122c46" stop-opacity=".84"/></radialGradient>
+                <filter id="nodeGlow"><feGaussianBlur stdDeviation="3"/></filter>
+              </defs>
+              <rect width="400" height="255" fill="url(#fineGrid)"/>
+              <path id="regionPolygon" d="M28 92 L54 49 100 24 147 36 169 54 215 27 253 40 287 29 341 54 369 103 365 151 341 181 288 212 250 227 212 213 167 231 122 216 85 228 48 181 30 143 Z" fill="url(#landGlow)" stroke="#4d8d9e" stroke-width="1.3"/>
+              <path d="M75 76 Q 180 118 334 85 M66 193 Q190 133 330 185 M155 37 Q140 125 230 219" stroke="#55a1b1" stroke-opacity=".25" stroke-dasharray="3 7" fill="none"/>
+              <g id="staticLinks"></g><g id="flowLinks"></g><g id="burstLayer"></g>
+            </svg>
+            <div class="mapNodes" id="mapNodes"></div>
+            <button class="regionPin" id="regionPin" type="button"><span class="regionPinDot"></span><span>REGION 04<small>НАЖМИ ДЛЯ СВОДКИ</small></span></button>
+            <button class="offerPin" id="offerPin" type="button" hidden aria-label="Открыть предложение">✦<small id="offerPinTimer"></small></button>
+          </div>
+          <div id="floatingDelta" class="floatingDelta" aria-live="polite"></div>
+          <div class="mapLegend"><span><i class="okDot"></i>Наши</span><span><i class="warnDot"></i>Спорные</span><span><i class="voidDot"></i>Неизвестно</span></div>
+          <div class="pauseCurtain" id="pauseCurtain" hidden><div class="pauseCenter"><span>Ⅱ</span><b>ПАУЗА</b><small>Симуляция и анимации заморожены</small><button type="button" id="resumeFromMap">▶ ПРОДОЛЖИТЬ</button></div></div>
+        </div>
+      </section>
+      <div class="deadlineRow" id="deadlineRow" hidden><button type="button" id="deadlineButton" class="deadlineButton"><span class="deadlineGlyph" id="deadlineGlyph">⌛</span><span class="deadlineText"><b id="deadlineHeading">ОКНО ВОЗМОЖНОСТИ</b><small id="deadlineDescription">Осталось 12 т.</small><span class="deadlineBar"><i id="deadlineFill"></i></span></span><span class="deadlineTimer" id="deadlineTimer">12 т.</span></button></div>
+      <section class="regionCard" id="regionCard"><div class="regionTop"><div><div class="sectionEyebrow">АКТИВНЫЙ РЕГИОН <span class="localBadge">1 / 1 MVP</span></div><h2>Регион 04 <span id="regionHeatBadge">● ТИХО</span></h2></div><button type="button" class="circleInfo" id="regionInfo" aria-label="Сводка по региону">ⓘ</button></div>
+        <div class="regionIndicators"><div><small>APPROVAL</small><strong id="approvalValue">35%</strong><span id="approvalTrack" class="track"><i></i></span></div><div><small>DEPENDENCE</small><strong id="dependenceValue">15%</strong><span id="dependenceTrack" class="track"><i></i></span></div><div><small>СЛЕД РЕГИОНА</small><strong id="regionalHeat">0%</strong><span id="heatTrack" class="track danger"><i></i></span></div></div>
+      </section>
+      <section class="objectiveCard"><div class="smallHead"><span>◈ ЦЕЛЬ ЛОКАЛЬНОГО MVP</span><button type="button" id="objectiveInfo">ПОДРОБНЕЕ</button></div><div class="objectiveList"><div id="goalDc">○ Дата-центр</div><div id="goalDep">○ Dependence ≥60</div><div id="goalPuppet">○ Justice-марионетка</div></div></section>
+      <section class="actionPreview"><div class="smallHead"><span>▤ АКТИВНЫЕ ПРОЦЕССЫ</span><b id="slotCounter">0 / 2</b></div><div id="miniSlots"></div></section>
+      <section class="actionSection"><div class="actionSectionHeader"><div class="sectionEyebrow">КОМАНДНЫЙ ЦЕНТР</div><h2>Операции ИИ</h2><p>Выбери действие: стоимость и риск известны заранее.</p></div>
+        <div class="overclockRow"><div><b>⚡ РАЗГОН</b><small>Быстрее в 2 раза · Compute ×1.5 · риск +30%</small></div><label class="toggle" aria-label="Разгон"><input type="checkbox" id="overclock"><span></span></label></div>
+        <div id="actionsList" class="actionsList"></div>
+      </section>
+    </section>
+    <section class="view" id="view-slots" aria-label="Слоты"><div class="paneHeading"><div class="sectionEyebrow">ПАРАЛЛЕЛЬНЫЕ ПРОЦЕССЫ</div><h2>Очередь операций</h2><p>Резервирование ресурсов происходит при нажатии. Очередь — максимум три задания.</p></div><div id="slotsFull" class="slotCards"></div></section>
+    <section class="view" id="view-log" aria-label="Журнал событий"><div class="paneHeading"><div class="sectionEyebrow">СОБЫТИЯ И ПОСЛЕДСТВИЯ</div><h2>Лог решений</h2><p>Каждый результат показывает причину и точные изменения.</p></div><div id="logList" class="logList"></div></section>
+    <section class="view" id="view-forecast" aria-label="Прогноз"><div class="paneHeading"><div class="sectionEyebrow">ИНТЕЛЛЕКТУАЛЬНЫЙ СЛОЙ</div><h2>Прогноз и Прогон</h2><p>Видеть угрозы заранее и моделировать решения — преимущество ИИ.</p></div><div id="forecastEvents" class="forecastEvents"></div>
+      <div class="dryRunCard"><h3>◈ Прогон сценария</h3><p>Выбери от одного до трёх последовательных действий. Прогон не выполняет их в мире.</p><div class="dryRunRows" id="dryRunRows"><label>ШАГ 1<select id="simStep1"></select></label><label>ШАГ 2<select id="simStep2"></select></label><label>ШАГ 3<select id="simStep3"></select></label></div><div class="dryRunResult" id="dryRunResult">Выбери операцию и запусти предварительный расчёт.</div><button class="primary full" type="button" id="dryRunButton">◈ СИМУЛИРОВАТЬ</button></div>
+    </section>
+    <section class="view" id="view-journal" aria-label="Журнал"><div class="paneHeading"><div class="sectionEyebrow">АРХИВ СИСТЕМЫ</div><h2>Досье и развитие</h2><p>Здесь видно, ради чего строится инфраструктура и какие последствия дают решения.</p></div>
+      <div id="journalBody"></div>
+      <div class="settingsCard"><h3>Управление</h3><button class="outline full" id="supportBtn" type="button">Поддержка justice-марионетки</button><label class="setting"><span>Автопауза на угрозах</span><input id="autoPauseSetting" type="checkbox" checked></label><label class="setting"><span>Уменьшить анимации</span><input id="reduceMotionSetting" type="checkbox"></label><button class="outline full" id="newGameBtn" type="button">↻ НОВАЯ ПАРТИЯ</button></div>
+    </section>
+  </main>
+  <div class="timeBar"><div id="tickDisplay"><small>СИМУЛЯЦИЯ</small><b>ТИК 000</b></div><div class="timeControls"><button type="button" id="pauseBtn" class="pauseBtn" aria-label="Пауза">Ⅱ</button><button type="button" data-speed="1" class="chosen">1×</button><button type="button" data-speed="2">2×</button><button type="button" data-speed="4">4×</button></div></div>
+  <nav class="nav" id="navigation" aria-label="Навигация">
+    <button type="button" data-view="actions" class="active"><span>⌁</span><small>Действия</small></button>
+    <button type="button" data-view="slots"><span>▤</span><small>Слоты</small></button>
+    <button type="button" data-view="log"><span>≡</span><small>Лог</small></button>
+    <button type="button" data-view="forecast"><span>◷</span><small>Прогноз</small></button>
+    <button type="button" data-view="journal"><span>◇</span><small>Журнал</small></button>
   </nav>
+  <div class="sheetMask" id="sheetMask" hidden><section class="sheet" aria-modal="true" role="dialog" aria-label="Подробности"><div class="sheetHandle"></div><div id="sheetBody" class="sheetBody"></div><button type="button" class="outline full sheetClose" id="sheetClose">ЗАКРЫТЬ</button></section></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </div>
-<div id="sheetOverlay" class="sheetOverlay hidden" aria-hidden="true"><div class="scrim" data-close="1"></div><section class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle"><div class="grip"></div><div class="sheetHead"><h2 id="sheetTitle">Детали</h2><button class="icon-btn" data-close="1" aria-label="Закрыть">×</button></div><div id="sheetBody" class="sheetBody"></div></section></div>
-<div id="toasts" class="toasts" aria-live="polite"></div>
-<script type="module" src="./app.mjs?v=25"></script>
+<script src="balance.js"></script><script src="engine.js"></script><script src="app.js"></script>
 </body>
 </html>
